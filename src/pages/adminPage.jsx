@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import { FaBoxArchive } from "react-icons/fa6";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
@@ -7,11 +7,46 @@ import ProductAdminPage from "./admin/productsAdminPage";
 import AddProductAdminPage from "./admin/addProductAdminPage";
 import UpdateProductAdminPage from "./admin/updateProductPage";
 import OrderAdminPage from "./admin/orderPageAdmin";
-
-
+import { use, useEffect, useState } from "react";
+import Loader from "../components/loader";
+import axios from "axios";
+import toast from "react-hot-toast";
 export default function AdminPage(){
+    const navigate = useNavigate();
+    const [adminValidated, setAdminValidated] = useState(false);
+    useEffect(
+        ()=>{
+            const token = localStorage.getItem("token");
+            if(token == null){
+                toast.error("Please login to access admin panel");
+                navigate("/login");
+            }else{
+                axios.get(import.meta.env.VITE_BACKEND_URL +  "/users/",{
+                    headers:{
+                        Authorization: `Bearer ${token}`
+                    }
+                }).then(
+                    (res)=>{
+                        if(res.data.role === "admin"){
+                            setAdminValidated(true);
+                        }else{
+                            toast.error("You are not authorized to access admin panel");
+                            navigate("/login");
+                        }
+                    }
+                ).catch(
+                    (err)=>{
+                        toast.error("Please login to access admin panel");
+                        navigate("/login");
+                    }
+                )
+            }
+        }
+    ,[])
     return(
         <div className="w-full h-screen  flex">
+
+           {adminValidated ? <>
             <div className="w-[300px] h-full flex flex-col items-center">
                 <span className="text-4xl font-bold my-5">Admin Panel</span>
                 <Link className="flex flex-row h-[60px] w-full pl-20  items-center gap-[20px] text-[20px]" to="/admin/products"><FaBoxArchive />Products</Link>
@@ -28,7 +63,9 @@ export default function AdminPage(){
                     <Route path="/updateProduct" element={<UpdateProductAdminPage/>}></Route>
                 </Routes>
             </div>
+            </>:<Loader/> }
            
         </div>
     )
+    
 }
