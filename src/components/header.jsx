@@ -16,11 +16,13 @@ export default function Header() {
       : "px-3 py-2 text-white hover:text-white hover:bg-white/10 rounded-lg transition";
 
   return (
-    <header className="w-full bg-primary shadow-lg px-6">
-      <div className="max-w-7xl mx-auto h-[80px] flex items-center justify-between">
+    <header className="w-full bg-primary shadow-lg px-6 ">
+      <div className="max-w-7xl mx-auto h-[80px] flex items-center justify-between ">
 
         {/* Logo */}
-        <h1 className="text-white font-bold text-2xl">Brand</h1>
+        <NavLink to="/">
+          <img src="./logo-new.png" alt="" className="w-[150px] h-[50px] object-cover" />
+        </NavLink>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-6">
