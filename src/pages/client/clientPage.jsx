@@ -4,6 +4,7 @@ import ProductsPage from "./productsPage";
 import ProductOverView from "./productOverView";
 import CartPage from "./cart";
 import CheckoutPage from "./checkpotPage";
+import HomePage from "../homePage";
 
 export default function ClientPage(){
     return(
@@ -13,7 +14,7 @@ export default function ClientPage(){
             <div className="w-full h-[calc(100vh-100px)] flex justify-center items-center ">
                 <Routes path="/">
                     <Route 
-                    path="/" element={<h1 className="text-3xl font-bold">Home Page</h1>}/>
+                    path="/" element={<HomePage/>}/>
                     
                     <Route 
                     path="/products" element={<ProductsPage/>} />

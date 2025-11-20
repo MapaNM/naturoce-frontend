@@ -12,12 +12,12 @@ export default function Header() {
 
   const navLinkStyle = ({ isActive }) =>
     isActive
-      ? "px-3 py-2 rounded-lg text-white font-semibold bg-white/20"
-      : "px-3 py-2 text-white hover:text-white hover:bg-white/10 rounded-lg transition";
+      ? "px-6 py-2 rounded-full text-white font-semibold bg-[#2e4024]/50"
+      : "px-3 py-2 text-[#2e4024]/80 font-semibold hover:text-white hover:bg-white/10 rounded-full transition";
 
   return (
-    <header className="w-full bg-primary shadow-lg px-6 ">
-      <div className="max-w-7xl mx-auto h-[80px] flex items-center justify-between ">
+    <header className="w-full bg-[#2e4024]/50 font-serif shadow-md px-6 ">
+      <div className="max-w-7xl mx-auto h-[80px]  flex items-center justify-between ">
 
         {/* Logo */}
         <NavLink to="/">
@@ -25,7 +25,7 @@ export default function Header() {
         </NavLink>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex    items-center gap-6">
           <NavLink to="/" className={navLinkStyle}>Home</NavLink>
           <NavLink to="/products" className={navLinkStyle}>Products</NavLink>
           <NavLink to="/reviews" className={navLinkStyle}>Reviews</NavLink>
@@ -33,13 +33,13 @@ export default function Header() {
           <NavLink to="/contact-us" className={navLinkStyle}>Contact</NavLink>
 
           <NavLink to="/cart">
-            <BiCart className="text-white text-3xl hover:scale-110 transition" />
+            <BiCart className="text-[#2e4024]/50 text-3xl hover:scale-110 hover:text-[#2e4024] transition" />
           </NavLink>
 
           <button
             onClick={handleLogout}
           >
-            <BiLogOut className="text-3xl text-white hover:scale-110 transition cursor-pointer"/>
+            <BiLogOut className="text-3xl text-[#2e4024]/50 hover:scale-110 hover:text-[#2e4024] transition cursor-pointer"/>
           </button>
         </nav>
 
@@ -49,14 +49,14 @@ export default function Header() {
           {/* Mobile Logout */}
           <button
             onClick={handleLogout}
-            className="text-white text-3xl"
+            className="text-[#2e4024]/50 hover:text-[#2e4024]  text-3xl"
           >
             <BiLogOut />
           </button>
 
           {/* Hamburger */}
           <button
-            className="text-white text-3xl md:hidden"
+            className="text-[#2e4024]/50 hover:text-[#2e4024] text-3xl md:hidden"
             onClick={() => setOpen(!open)}
           >
             <BiMenu />
@@ -67,7 +67,7 @@ export default function Header() {
 
       {/* Mobile Dropdown Menu */}
       {open && (
-        <div className="md:hidden bg-primary/95 text-white w-full flex flex-col items-center pb-4 gap-3 absolute top-[80px] left-0 border-t border-white/20">
+        <div className="md:hidden bg-[#3E5632] text-white w-full flex flex-col items-center pb-4 gap-3 absolute top-[80px] left-0 border-t border-white/20">
 
           <NavLink to="/" onClick={() => setOpen(false)}>
             <div className="py-2">Home</div>
