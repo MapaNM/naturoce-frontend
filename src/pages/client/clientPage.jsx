@@ -5,6 +5,9 @@ import ProductOverView from "./productOverView";
 import CartPage from "./cart";
 import CheckoutPage from "./checkpotPage";
 import HomePage from "../homePage";
+import ReviewsPage from "../reviewsPage";
+import AboutPage from "../aboutPage";
+import ContactPage from "../contactPage";
 
 export default function ClientPage(){
     return(
@@ -20,13 +23,13 @@ export default function ClientPage(){
                     path="/products" element={<ProductsPage/>} />
 
                     <Route 
-                    path="/reviews" element={<h1 className="text-3xl font-bold">Reviews Page</h1>} />
+                    path="/reviews" element={<ReviewsPage/>} />
                     
                     <Route 
-                    path="/about-us" element={<h1 className="text-3xl font-bold">About Us Page</h1>} />
+                    path="/about-us" element={<AboutPage/>} />
                     
                     <Route 
-                    path="/contact-us" element={<h1 className="text-3xl font-bold">Contact Us Page</h1>} />
+                    path="/contact-us" element={<ContactPage/>} />
 
                     <Route
                     path="/cart" element={<CartPage/>} />
