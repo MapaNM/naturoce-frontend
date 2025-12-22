@@ -34,40 +34,36 @@ export default function ProductsPage(){
         [loading]
     );
 
-    return(
+    return (
+  <div className="w-full h-full bg-[#F4F7F2] font-serif text-[#2E3A2C]">
 
-        <div className="w-full h-full ">
-            <div className="w-full h-[100px] flex justify-center items-center">
-                <input 
-                type="text" 
-                placeholder="Search Products..."
-                value={query}
-                onChange={(e) => 
-                    {
-                    setQuery(e.target.value);
-                    setLoading(true);
-                    }
-                }
-                className="w-[400px] h-[40px] border border-gray-300 rounded-b-lg p-2"
-                />
-            </div>
-            {   
-                loading ? 
-                    <Loader/> : 
-                    <div className="w-full flex flex-wrap gap-[20px] justify-center items-center p-[20px]" >
-                        {
-                            products.map(
-                                (product)=>{
-                                    return(
-                                        <ProductCard key={product.productId} product={product} />
-                                    )
-                                }
-                            )
-                        }
+    
+    <div className="w-full py-10 flex flex-col items-center gap-6">
+      <input
+        type="text"
+        placeholder="Search natural products..."
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setLoading(true);
+        }}
+        className="w-full max-w-md h-12 px-5 rounded-full border border-[#C8D4C2] bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#3E5632]"
+      />
+    </div>
 
-                    </div>
-            }
+    {loading ? (
+      <Loader />
+    ) : (
+      <div className="w-full max-w-7xl mx-auto flex flex-wrap gap-8 justify-center px-6 pb-16">
+        {products.map((product) => (
+          <ProductCard
+            key={product.productId}
+            product={product}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+);
 
-        </div>
-    )
 }

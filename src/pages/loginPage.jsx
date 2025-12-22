@@ -61,61 +61,79 @@ export default function LoginPage(){
         )
     }
 
-    return(
-        <div className="w-full h-screen bg-[url(./loginbg.jpg)] bg-cover bg-center flex justify-center items-center px-4">
-        <div className="w-full max-w-md p-10 border border-white/30 backdrop-blur-md bg-white/80 shadow-2xl rounded-2xl flex flex-col items-center gap-6">
+   return (
+  <div className="w-full min-h-screen bg-[#F4F7F2] flex items-center justify-center px-6 text-[#2E3A2C]">
+    <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl border border-[#DCE5D8]">
+      
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-[#1F2B1D] mb-2">
+          Welcome Back
+        </h1>
+        <p className="text-[#4A5B42]">
+          Login to continue your natural journey
+        </p>
+      </div>
 
-            <h1 className="text-4xl font-extrabold text-black tracking-wide">
-            LOGIN
-            </h1>
-
-        
-            <div className="w-full flex flex-col gap-1">
-            <label className="text-lg font-medium text-black">Email :</label>
-            <input type="text"
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-12 px-3 border border-gray-400 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-black/40"
-            />
-            </div>
-
-           
-            <div className="w-full flex flex-col gap-1">
-            <label className="text-lg font-medium text-black">Password :</label>
-            <input type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-12 px-3 border border-gray-400 rounded-xl text-black focus:outline-none focus:ring-2 focus:ring-black/40"
-            />
-            <p className="text-black text-sm mt-1">
-                Forget Password?{" "}
-                <Link to="/forget" className="text-zinc-700 underline">
-                click here to reset
-                </Link>
-            </p>
-            </div>
-
-            
-            <button onClick={login}
-            className="w-full h-12 bg-black rounded-xl text-white text-lg font-medium hover:bg-zinc-800 transition-all duration-300"
-            >
-            Login
-            </button>
-
-            
-            <button onClick={googleLogin}
-            className="w-full h-12 bg-black rounded-xl text-white text-lg font-medium hover:bg-zinc-800 transition-all duration-300"
-            >
-            Google Login
-            </button>
-
-            <p className="text-black text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-zinc-700 underline">
-                Sign up
-            </Link>{" "}
-            here
-            </p>
-        </div>
+      <div className="flex flex-col gap-5">
+        <div>
+          <label className="text-sm font-medium mb-1 block">Email</label>
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 rounded-xl border border-[#C8D4C2] focus:outline-none focus:ring-2 focus:ring-[#3E5632]"
+          />
         </div>
 
-    )
+        <div>
+          <label className="text-sm font-medium mb-1 block">Password</label>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 rounded-xl border border-[#C8D4C2] focus:outline-none focus:ring-2 focus:ring-[#3E5632]"
+          />
+
+          <p className="text-sm text-[#5F6F5A] mt-2">
+            Forgot password?{" "}
+            <Link to="/forget" className="text-[#3E5632] font-medium hover:underline">
+              Reset here
+            </Link>
+          </p>
+        </div>
+
+        <button
+          onClick={login}
+          className="mt-2 px-6 py-3 bg-[#3E5632] text-white rounded-full shadow hover:bg-[#2e4024] transition"
+        >
+          Login
+        </button>
+      </div>
+
+      
+      <div className="flex items-center gap-4 my-6">
+        <div className="flex-1 h-px bg-[#DCE5D8]"></div>
+        <span className="text-sm text-[#5F6F5A]">OR</span>
+        <div className="flex-1 h-px bg-[#DCE5D8]"></div>
+      </div>
+
+      
+      <button
+        onClick={googleLogin}
+        className="w-full px-6 py-3 bg-[#1F2B1D] text-white rounded-full shadow hover:bg-[#141c13] transition"
+      >
+        Continue with Google
+      </button>
+
+     
+      <p className="text-center text-sm text-[#5F6F5A] mt-6">
+        Don't have an account?{" "}
+        <Link
+          to="/register"
+          className="text-[#3E5632] font-semibold hover:underline"
+        >
+          Sign up
+        </Link>
+      </p>
+    </div>
+  </div>
+)
 }
