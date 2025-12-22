@@ -32,71 +32,114 @@ export default function ProductOverView(){
         },[status]
     )
 
-    return(
-        <div className="w-full h-full">
-            {
-                status === "loading" && <Loader/>
-            }
-            {
-                status === "success" && 
-                <div className="w-full h-full flex flex-col md:flex-row ">
-                    
-                        <h1 className="text-3xl pt-5 font-bold text-center md:hidden">{product.name} <span className="text-xl flex flex-col font-medium">{product.altNames.join(" | ")}</span></h1>
-                        <div className="w-full  h-full md:w-[49%] flex flex-col justify-center items-center ">
-                        <ImageSlider images={product.images}/>
-                    </div>
-                    <div className="w-full  h-full md:w-[49%] flex flex-col  md:mt-[8%] md:mr-[8%]">
-                        <h1 className="text-3xl font-bold text-center hidden md:block">{product.name} <span className="text-xl font-medium">{product.altNames.join(" | ")}</span></h1>
-                        <p className="text-lg font-light mt-[20px] p-5 text-center">{product.description}</p>
-                        <div className="w-full  flex flex-col  items-center mt-[20px]">
-                            {
-                                product.labelledPrice > product.price ?
-                                <div>
-                                    <span className="text-2xl font-bold  line-through mr-[10px]">Rs.{product.labelledPrice.toLocaleString("en-US", {minimumFractionDigits: 2})}</span>
-                                    <span className="text-3xl font-bold "> Rs.{product.price.toLocaleString("en-US", {minimumFractionDigits: 2})}</span>
-                                </div>
-                                :
-                                <div>
-                                <span className="text-3xl font-bold "> Rs.{product.price.toLocaleString("en-US", {minimumFractionDigits: 2})}</span>
-                                </div>
-                            }
+   return (
+  <div className="w-full min-h-screen bg-[#F4F7F2] px-4 md:px-10 py-10 text-[#2E3A2C]">
 
-                        </div>
-                        <div className="w-full  flex flex-row justify-center items-center mt-[20px] gap-5 " >
-                            <button className="w-[150px] h-[40px] bg-gray-300 text-black font-medium  rounded-lg cursor-pointer hover:bg-gray-400"
-                            onClick={
-                                ()=>{
-                                    addToCart(product, 1)
-                                    toast.success("Product added to cart")
-                                    console.log(getCart())
-                                }
-                            }>Add to Cart</button>
-                            <button onClick={
-                                ()=>{
-                                    navigate("/checkout", { state: {
-                                        items: [
-                                            {
-                                                productId: product.productId,
-                                                quantity: 1,
-                                                name: product.name,
-                                                image: product.images[0],
-                                                price: product.price
+    {status === "loading" && <Loader />}
 
-                                            }
-                                        ]
-                                    }});
-                                }
-                            } className="w-[150px] h-[40px] bg-blue-600 text-white font-medium  rounded-lg cursor-pointer hover:bg-blue-900">Buy Now</button>
-                        </div>
+    {status === "success" && (
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
 
-                    </div>
-                    
-                </div>
-            }
-            {
-                status === "error" && <h1 className="text-red-500">Error loading product</h1>
-            }
-            
+        
+        <h1 className="text-3xl font-bold text-center md:hidden">
+          {product.name}
+          <span className="block text-lg font-medium text-[#4A5B42]">
+            {product.altNames.join(" | ")}
+          </span>
+        </h1>
+
+        
+        <div className="w-full md:w-1/2 bg-white rounded-2xl shadow-md border border-[#DCE5D8] p-6 flex justify-center items-center">
+          <ImageSlider images={product.images} />
         </div>
-    )
+
+        
+        <div className="w-full md:w-1/2 flex flex-col gap-6 md:pt-6">
+
+          
+          <h1 className="text-3xl font-bold hidden md:block">
+            {product.name}
+            <span className="block text-lg font-medium text-[#4A5B42]">
+              {product.altNames.join(" | ")}
+            </span>
+          </h1>
+
+          
+          <p className="text-lg leading-relaxed text-[#4A5B42]">
+            {product.description}
+          </p>
+
+          
+          <div className="flex items-center gap-4 mt-2">
+            {product.labelledPrice > product.price ? (
+              <>
+                <span className="text-xl font-semibold line-through text-[#8A9A85]">
+                  Rs.
+                  {product.labelledPrice.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+                <span className="text-3xl font-bold text-[#1F2B1D]">
+                  Rs.
+                  {product.price.toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+              </>
+            ) : (
+              <span className="text-3xl font-bold text-[#1F2B1D]">
+                Rs.
+                {product.price.toLocaleString("en-US", {
+                  minimumFractionDigits: 2,
+                })}
+              </span>
+            )}
+          </div>
+
+          
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
+            <button
+              className="px-8 py-3 rounded-full bg-[#E3E9E0] text-[#2E3A2C] font-medium hover:bg-[#D2DCCC] transition"
+              onClick={() => {
+                addToCart(product, 1);
+                toast.success("Product added to cart");
+                console.log(getCart());
+              }}
+            >
+              Add to Cart
+            </button>
+
+            <button
+              className="px-8 py-3 rounded-full bg-[#3E5632] text-white font-medium hover:bg-[#2e4024] transition"
+              onClick={() => {
+                navigate("/checkout", {
+                  state: {
+                    items: [
+                      {
+                        productId: product.productId,
+                        quantity: 1,
+                        name: product.name,
+                        image: product.images[0],
+                        price: product.price,
+                      },
+                    ],
+                  },
+                });
+              }}
+            >
+              Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {status === "error" && (
+      <h1 className="text-red-500 text-center mt-10">
+        Error loading product
+      </h1>
+    )}
+  </div>
+);
+
 }

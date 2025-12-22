@@ -18,8 +18,8 @@ export default function HomePage() {
         </div>
 
       {/* Featured Categories */}
-    <div className="w-full  flex justify-center">
-      <section className="max-w-6xl w-full py-10 px-6 ">
+    <div className="w-full  flex justify-center bg-[#F4F7F2]">
+      <section className="max-w-6xl w-full py-10 px-6  ">
         <h2 className="text-4xl font-semibold mb-10 text-center text-[#2E3A2C]">Featured Categories</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {[
